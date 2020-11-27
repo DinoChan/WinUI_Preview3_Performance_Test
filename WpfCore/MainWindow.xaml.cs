@@ -23,7 +23,8 @@ namespace WpfCore
     {
         public MainWindow()
         {
-            InitializeComponent(); Root.Loaded += OnLoaded;
+            InitializeComponent(); 
+            Root.Loaded += OnLoaded;
         }
 
 
