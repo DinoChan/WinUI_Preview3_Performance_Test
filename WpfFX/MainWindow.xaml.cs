@@ -31,8 +31,8 @@ namespace WpfFX
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            var rows = 60;
-            var columns = 40;
+            var rows = 70;
+            var columns = 100;
             for (int i = 0; i < rows; i++)
             {
                 Root.RowDefinitions.Add(new RowDefinition());
@@ -64,10 +64,10 @@ namespace WpfFX
             }
 
             var timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(100);
+            timer.Interval = TimeSpan.FromMilliseconds(500);
             timer.Tick += (s, args) =>
             {
-                Root.DataContext = DateTime.Now.ToString("mm fff");
+                Root.DataContext = DateTime.Now.ToString("fff");
             };
             timer.Start();
 

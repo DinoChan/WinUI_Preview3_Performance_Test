@@ -32,7 +32,7 @@ namespace WpfCore
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             var rows = 60;
-            var columns = 40;
+            var columns = 120;
             for (int i = 0; i < rows; i++)
             {
                 Root.RowDefinitions.Add(new RowDefinition());
@@ -57,6 +57,8 @@ namespace WpfCore
                     textBlock.SetBinding(TextBlock.TextProperty, binding);
                     textBlock.Opacity = .5;
                     textBlock.FontSize = 12;
+                    textBlock.Margin = new Thickness(-3, 0, -3, 0);
+                    textBlock.Visibility = Visibility.Collapsed;
                     Root.Children.Add(textBlock);
                     Grid.SetRow(textBlock, row);
                     Grid.SetColumn(textBlock, column);
@@ -64,8 +66,8 @@ namespace WpfCore
             }
 
             var timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(100);
-            timer.Tick += (s, args) => Root.DataContext = DateTime.Now.ToString("mm fff");
+            timer.Interval = TimeSpan.FromMilliseconds(1000);
+            timer.Tick += (s, args) => Root.DataContext = DateTime.Now.ToString("fff");
             timer.Start();
         }
     }
