@@ -7,9 +7,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid x:Name="Root"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center">
-        </Grid>
+        <ScrollViewer Height="200"
+                      Width="400"
+                      VerticalScrollBarVisibility="Disabled"
+                      HorizontalScrollBarVisibility="Disabled">
+            <Grid  Height="2591">
+                <Image  Stretch="None"
+                        Source="/Assets/Images/tuna_sprite.png"
+                        Width="400"
+                        Loaded="OnCatLoaded"
+                        RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <CompositeTransform />
+                    </Image.RenderTransform>
+                </Image>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Window>

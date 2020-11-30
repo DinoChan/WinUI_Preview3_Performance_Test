@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -24,54 +25,33 @@ namespace WpfFX
         public MainWindow()
         {
             InitializeComponent();
-            Root.Loaded += OnLoaded;
         }
 
 
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private void OnCatLoaded(object sender, RoutedEventArgs e)
         {
-            var rows = 70;
-            var columns = 100;
-            for (int i = 0; i < rows; i++)
+            var transform = (sender as Image).RenderTransform as CompositeTransform;
+            var storyboard = new Storyboard
             {
-                Root.RowDefinitions.Add(new RowDefinition());
-            }
-
-            for (int i = 0; i < columns; i++)
-            {
-                Root.ColumnDefinitions.Add(new ColumnDefinition());
-            }
-
-            var source = string.Empty;
-
-            var binding = new Binding();
-            binding.Mode = BindingMode.OneWay;
-
-
-            for (int row = 0; row < rows; row++)
-            {
-                for (int column = 0; column < columns; column++)
-                {
-                    var textBlock = new TextBlock();
-                    textBlock.SetBinding(TextBlock.TextProperty, binding);
-                    textBlock.Opacity = .5;
-                    textBlock.FontSize = 12;
-                    Root.Children.Add(textBlock);
-                    Grid.SetRow(textBlock, row);
-                    Grid.SetColumn(textBlock, column);
-                }
-            }
-
-            var timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(500);
-            timer.Tick += (s, args) =>
-            {
-                Root.DataContext = DateTime.Now.ToString("fff");
+                FillBehavior = FillBehavior.Stop,
+                RepeatBehavior = RepeatBehavior.Forever
             };
-            timer.Start();
 
-
+            var keyFrames = new DoubleAnimationUsingKeyFrames();
+            Storyboard.SetTarget(keyFrames, transform);
+            Storyboard.SetTargetProperty(keyFrames, nameof(CompositeTransform.TranslateY));
+            for (var i = 0; i < 12; i++)
+            {
+                var keyFrame = new DiscreteDoubleKeyFrame
+                {
+                    KeyTime = TimeSpan.FromSeconds((i + 1d) / 12d),
+                    Value = -(i + 1) * 2391d / 12d
+                };
+                keyFrames.KeyFrames.Add(keyFrame);
+            }
+            storyboard.Children.Add(keyFrames);
+            storyboard.Begin();
         }
     }
 }
