@@ -1,35 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
-namespace WpfFX
+// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
+
+namespace Uwp
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public partial class MainWindow : Window
+    public sealed partial class Shell : Page
     {
-        public MainWindow()
+        public Shell()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             Loaded += OnLoaded;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+          
             var rows = 10;
             var columns = 10;
             for (int i = 0; i < rows; i++)
@@ -47,7 +48,7 @@ namespace WpfFX
                 for (int column = 0; column < columns; column++)
                 {
                     var walkingCat = new WalkingCat();
-                    walkingCat.Opacity = .9;
+                    //walkingCat.Opacity = .9;
                     Root.Children.Add(walkingCat);
                     Grid.SetRow(walkingCat, row);
                     Grid.SetColumn(walkingCat, column);
