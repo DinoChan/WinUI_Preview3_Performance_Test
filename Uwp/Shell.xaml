@@ -9,8 +9,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Viewbox>
-        <Grid x:Name="Root">
-            
-        </Grid>
+        <Grid x:Name="Root"/>
     </Viewbox>
 </Page>

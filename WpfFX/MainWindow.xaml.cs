@@ -47,7 +47,6 @@ namespace WpfFX
                 for (int column = 0; column < columns; column++)
                 {
                     var walkingCat = new WalkingCat();
-                    walkingCat.Opacity = .9;
                     Root.Children.Add(walkingCat);
                     Grid.SetRow(walkingCat, row);
                     Grid.SetColumn(walkingCat, column);

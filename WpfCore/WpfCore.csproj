@@ -6,4 +6,20 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="tuna_sprite.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="tuna_sprite.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="WalkingCat.xaml.cs">
+      <DependentUpon>WalkingCat.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

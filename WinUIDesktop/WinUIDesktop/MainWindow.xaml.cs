@@ -29,12 +29,10 @@ namespace WinUIDesktop
             Root.Loaded += OnLoaded;
         }
 
-
-
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            var rows = 60;
-            var columns = 80;
+            var rows = 10;
+            var columns = 10;
             for (int i = 0; i < rows; i++)
             {
                 Root.RowDefinitions.Add(new RowDefinition());
@@ -45,30 +43,16 @@ namespace WinUIDesktop
                 Root.ColumnDefinitions.Add(new ColumnDefinition());
             }
 
-            var source = string.Empty;
-
-            var binding = new Binding();
-            binding.Mode = BindingMode.OneWay;
-
-
             for (int row = 0; row < rows; row++)
             {
                 for (int column = 0; column < columns; column++)
                 {
-                    var textBlock = new TextBlock();
-                    textBlock.SetBinding(TextBlock.TextProperty, binding);
-                    textBlock.Opacity = .5;
-                    textBlock.FontSize = 12;
-                    Root.Children.Add(textBlock);
-                    Grid.SetRow(textBlock, row);
-                    Grid.SetColumn(textBlock, column);
+                    var walkingCat = new WalkingCat();
+                    Root.Children.Add(walkingCat);
+                    Grid.SetRow(walkingCat, row);
+                    Grid.SetColumn(walkingCat, column);
                 }
             }
-
-            var timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(500);
-            timer.Tick += (s, args) => Root.DataContext = DateTime.Now.ToString("fff");
-            timer.Start();
         }
     }
 }

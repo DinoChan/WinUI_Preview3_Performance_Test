@@ -30,7 +30,6 @@ namespace Uwp
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-          
             var rows = 10;
             var columns = 10;
             for (int i = 0; i < rows; i++)
@@ -48,7 +47,7 @@ namespace Uwp
                 for (int column = 0; column < columns; column++)
                 {
                     var walkingCat = new WalkingCat();
-                    //walkingCat.Opacity = .9;
+                   
                     Root.Children.Add(walkingCat);
                     Grid.SetRow(walkingCat, row);
                     Grid.SetColumn(walkingCat, column);

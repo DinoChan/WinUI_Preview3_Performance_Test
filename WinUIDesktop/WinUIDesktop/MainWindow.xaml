@@ -7,10 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
-        <Grid x:Name="Root"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center">
+    <Viewbox>
+        <Grid x:Name="Root">
+
         </Grid>
-    </Grid>
+    </Viewbox>
 </Window>
