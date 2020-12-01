@@ -25,33 +25,34 @@ namespace WpfFX
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += OnLoaded;
         }
 
-
-
-        private void OnCatLoaded(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            var transform = (sender as Image).RenderTransform as CompositeTransform;
-            var storyboard = new Storyboard
+            var rows = 20;
+            var columns = 20;
+            for (int i = 0; i < rows; i++)
             {
-                FillBehavior = FillBehavior.Stop,
-                RepeatBehavior = RepeatBehavior.Forever
-            };
-
-            var keyFrames = new DoubleAnimationUsingKeyFrames();
-            Storyboard.SetTarget(keyFrames, transform);
-            Storyboard.SetTargetProperty(keyFrames, nameof(CompositeTransform.TranslateY));
-            for (var i = 0; i < 12; i++)
-            {
-                var keyFrame = new DiscreteDoubleKeyFrame
-                {
-                    KeyTime = TimeSpan.FromSeconds((i + 1d) / 12d),
-                    Value = -(i + 1) * 2391d / 12d
-                };
-                keyFrames.KeyFrames.Add(keyFrame);
+                Root.RowDefinitions.Add(new RowDefinition());
             }
-            storyboard.Children.Add(keyFrames);
-            storyboard.Begin();
+
+            for (int i = 0; i < columns; i++)
+            {
+                Root.ColumnDefinitions.Add(new ColumnDefinition());
+            }
+
+            for (int row = 0; row < rows; row++)
+            {
+                for (int column = 0; column < columns; column++)
+                {
+                    var walkingCat = new WalkingCat();
+                    walkingCat.Opacity = .9;
+                    Root.Children.Add(walkingCat);
+                    Grid.SetRow(walkingCat, row);
+                    Grid.SetColumn(walkingCat, column);
+                }
+            }
         }
     }
 }
