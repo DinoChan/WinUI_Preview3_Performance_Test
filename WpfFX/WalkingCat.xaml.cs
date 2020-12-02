@@ -29,12 +29,6 @@ namespace WpfFX
         private void OnCatLoaded(object sender, RoutedEventArgs e)
         {
             var transform = (sender as Image).RenderTransform as TranslateTransform;
-            var storyboard = new Storyboard
-            {
-                FillBehavior = FillBehavior.Stop,
-                RepeatBehavior = RepeatBehavior.Forever
-            };
-
             var keyFrames = new DoubleAnimationUsingKeyFrames();
             Storyboard.SetTarget(keyFrames, sender as Image);
             Storyboard.SetTargetProperty(keyFrames, new PropertyPath("RenderTransform.Y"));
@@ -47,6 +41,12 @@ namespace WpfFX
                 };
                 keyFrames.KeyFrames.Add(keyFrame);
             }
+
+            var storyboard = new Storyboard
+            {
+                FillBehavior = FillBehavior.Stop,
+                RepeatBehavior = RepeatBehavior.Forever
+            };
             storyboard.Children.Add(keyFrames);
             storyboard.Begin();
         }

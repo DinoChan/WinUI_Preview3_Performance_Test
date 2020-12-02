@@ -28,15 +28,11 @@ namespace Uwp
         private void OnCatLoaded(object sender, RoutedEventArgs e)
         {
             var transform = (sender as Image).RenderTransform as CompositeTransform;
-            var storyboard = new Storyboard
-            {
-                FillBehavior = FillBehavior.Stop,
-                RepeatBehavior = RepeatBehavior.Forever
-            };
-
             var keyFrames = new DoubleAnimationUsingKeyFrames();
             Storyboard.SetTarget(keyFrames, transform);
             Storyboard.SetTargetProperty(keyFrames, nameof(CompositeTransform.TranslateY));
+
+
             for (var i = 0; i < 12; i++)
             {
                 var keyFrame = new DiscreteDoubleKeyFrame
@@ -46,6 +42,12 @@ namespace Uwp
                 };
                 keyFrames.KeyFrames.Add(keyFrame);
             }
+
+            var storyboard = new Storyboard
+            {
+                FillBehavior = FillBehavior.Stop,
+                RepeatBehavior = RepeatBehavior.Forever
+            };
             storyboard.Children.Add(keyFrames);
             storyboard.Begin();
         }
