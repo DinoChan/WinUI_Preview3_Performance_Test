@@ -2,7 +2,7 @@
 
 WinUI 3 Preview 3
 
-|      |  CPU    | 内存     | GPU |
+|      |  CPU    | Ram     | GPU |
 | ---- | ---- | ---- | ----|
 |  WPF .NET Framework 4.8    |   12   |   60	   | 76 |
 | WPF .NET 5.0 |12 |85	| 72 |
